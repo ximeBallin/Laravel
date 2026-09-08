@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -10,13 +9,12 @@ Route::get('/', function () {
 Route:: get('/contact',function(){
 
     //return redirect('/contact2',303);
-    return redirect('/contact2',303);
-    return redirect()->route('contact2');
-    return to_route('contact2');
+    //return redirect()->route('contact2');
+    //return to_route('contact2');
 
-    //return view('contact', ['name' => 'Ximena']);
+    return view('contact', ['name' => 'Ximena']);
 })->name('contact');
 
-Route::get('/contact2', function () {
+Route:: get('/contact2',function(){
     return view('contact2');
 })->name('contact2');
