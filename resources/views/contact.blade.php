@@ -8,7 +8,23 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Contact 1</h1>
-<p>{{$name}}</p>
+
+
+    <h1>Contact 1</h1>
+    <p>{{ $name }}</p>
+
+    @if($name != "Ximena")
+        Tu nombre no es Andres
+    @else
+        <h3>tu nombre es Ximena</h3>
+    @endif
+
+
+    <ul>
+    @foreach ([1,2,3,4,5] as $item)
+        <li>{{ $item }}</li>
+    @endforeach
+    </ul>
+
 </body>
 </html>
