@@ -9,6 +9,5 @@
 </head>
 <body>
 <h1>Contact 2</h1>
-<p>{{$name}}</p>
 </body>
 </html>
