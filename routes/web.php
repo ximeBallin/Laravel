@@ -1,26 +1,17 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-
-Route::get('/test', function () {
-    return view('test');
+Route::get('/', function () {
+    return view('welcome');
 });
 
+Route::get('/contact', function () {
+    $data = ['name' => 'ximena'];
+    return view('contact2', $data);
+})->name('contact');
 
-//Route::get('/crud', function () {
-//    return view('crud/index');
-//});
-
-Route::get('/crud',function(){
-    $age=20;
-   $data = ['name'=> 'Xime', 'age'=>$age];
-   return view('crud/index',$data);
-})->name('crud');
-
-
-
+Route::get('/contact2', function () {
+    return view('contact2');
+})->name('contact2');
