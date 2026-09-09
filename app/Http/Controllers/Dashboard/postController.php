@@ -4,15 +4,46 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use Illuminate\Http\JsonResponse;
 
-class postController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return response()->json([
+            'name' => 'Abigail',
+            'state' => 'CA',
+        ]);
+
+        // $post = Post::find(2)->delete();
+        // dd($post);
+
+        // $post = Post::find(3);
+        // $post->update([
+        //     'title' => 'New Title 3',
+        //     'slug' => 'slug-3',
+        // ]);
+        // dd($post);
+
+        // $posts = Post::get();
+        // foreach ($posts as $key => $post) {
+        //     echo $post->title . '<br>';
+        // }
+        // dd($posts);
+
+        // $post = Post::create([
+        //     'title' => 'Test Title',
+        //     'slug' => 'test-slug',
+        //     'description' => 'Test Description',
+        //     'content' => 'Test Content',
+        //     'posted' => 'yes',
+        //     'category_id' => 1
+        // ]);
+        // dd($post);
     }
 
     /**
@@ -42,7 +73,7 @@ class postController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
         //
     }
