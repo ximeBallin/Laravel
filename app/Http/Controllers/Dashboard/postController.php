@@ -14,10 +14,12 @@ class PostController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json([
-            'name' => 'Abigail',
-            'state' => 'CA',
-        ]);
+        $post = Post::find(1);
+        dd($category->category->title);
+        //return response()->json([
+           // 'name' => 'Abigail',
+            //'state' => 'CA',
+        //]);
 
         // $post = Post::find(2)->delete();
         // dd($post);
