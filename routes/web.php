@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\PrimerController;
+use App\Http\Controllers\PrimerControlador;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test', [PrimerController::class, 'index']);
+Route::get('test', [PrimerControlador::class, 'index']);
+//Route::resource('post', PrimerControlador::class);
