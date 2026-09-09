@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->text('content');
-            $table->foreignId('category_id');
-            $table->text('description')->nullable();
-            $table->enum('posted', ['yes', 'no'])->default('no');
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

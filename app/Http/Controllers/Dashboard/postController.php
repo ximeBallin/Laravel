@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller
@@ -12,48 +13,20 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index()
     {
-        $post = Post::find(1);
-        dd($category->category->title);
-        //return response()->json([
-           // 'name' => 'Abigail',
-            //'state' => 'CA',
-        //]);
+        // Obtenemos los posts con su categoría relacionada
+        $posts = Post::with('category')->get();
 
-        // $post = Post::find(2)->delete();
-        // dd($post);
-
-        // $post = Post::find(3);
-        // $post->update([
-        //     'title' => 'New Title 3',
-        //     'slug' => 'slug-3',
-        // ]);
-        // dd($post);
-
-        // $posts = Post::get();
-        // foreach ($posts as $key => $post) {
-        //     echo $post->title . '<br>';
-        // }
-        // dd($posts);
-
-        // $post = Post::create([
-        //     'title' => 'Test Title',
-        //     'slug' => 'test-slug',
-        //     'description' => 'Test Description',
-        //     'content' => 'Test Content',
-        //     'posted' => 'yes',
-        //     'category_id' => 1
-        // ]);
-        // dd($post);
+        // Retornamos tu vista de Blade (ajusta la ruta de la vista según la estructura de tus carpetas)
+        return view('dashboard.posts.index', compact('posts'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('dashboard.posts.create');
     }
 
     /**
