@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller
 {
@@ -15,18 +14,15 @@ class PostController extends Controller
      */
     public function index()
     {
-        // Obtenemos los posts con su categoría relacionada
-        $posts = Post::with('category')->get();
-
-        // Retornamos tu vista de Blade (ajusta la ruta de la vista según la estructura de tus carpetas)
-        return view('dashboard.posts.index', compact('posts'));
+        //
     }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('dashboard.posts.create');
+        return view('dashboard.create');
     }
 
     /**
@@ -48,7 +44,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $id)
+    public function edit(string $id)
     {
         //
     }
@@ -68,4 +64,5 @@ class PostController extends Controller
     {
         //
     }
+
 }
