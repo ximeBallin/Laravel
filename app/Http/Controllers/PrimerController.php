@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 class PrimerController extends Controller
 {
-    function index(){
-        return view('contact', ['name' => 'Ximena']);
+    function index() {
+        $posts = ['post1','post2'];
+        return view('contact', ['posts'=>$posts]);
+    }
 
+    function otro($post=40, $otro=50) {
+        echo $post;
+        echo $otro;
     }
 }
