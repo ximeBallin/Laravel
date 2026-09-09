@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 500);
-            $table->string('slug', 500);
-            $table->string('description')->nullable();
-            $table->string('content')->nullable();
+            $table->string('title');
+            $table->string('slug');
+            $table->text('content');
+            $table->foreignId('category_id');
+            $table->text('description')->nullable();
+            $table->enum('posted', ['yes', 'no'])->default('no');
             $table->string('image')->nullable();
-            $table->enum('posted', ['yes', 'not'])->default('not');
-            $table->foreignId('category_id')->constrained()
-                ->onDelete('cascade');
-
             $table->timestamps();
         });
     }
