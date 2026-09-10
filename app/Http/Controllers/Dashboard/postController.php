@@ -33,8 +33,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all()['title']);
-     }
+        //dd($request->all());
+
+        Post::create($request->all());
+
+        return to_route('post.index');
+
+
+        //Post::create([
+            //'title' => $request->all()['title'],
+            //'slug' => $request->all()['slug'],
+            //'content' => $request->all()['content'],
+            //'category_id' => $request->all()['category_id'],
+            //'description' => $request->all()['description'],
+
+            //'image' => $request->all()['image'],
+        //]);
+
+
+    }
 
     /**
      * Display the specified resource.
