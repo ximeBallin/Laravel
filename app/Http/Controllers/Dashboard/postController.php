@@ -35,6 +35,17 @@ class PostController extends Controller
     {
         //dd($request->all());
 
+        $request->validate([
+            'title'=>'required min:5|min::500',
+            'slug'=>'required min:5|min::500',
+            'content'=>'required|min:7',
+            'category_id'=>'required|integer',
+            'description'=>'required|min:7',
+            'posted'=>'required|min:7',
+        ]);
+
+        dd('sss');
+
         Post::create($request->all());
 
         return to_route('post.index');
