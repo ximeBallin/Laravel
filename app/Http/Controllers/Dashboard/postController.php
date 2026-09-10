@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('id','title');
+        $categories = Category::pluck('title', 'id');
 
         return view('dashboard.create', compact('categories'));
     }
@@ -32,9 +32,21 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(Request $request)
     {
+       /* $validated = Validator::make($request->all(),
+            [
+                'title' => 'required|min:5|max:500',
+                'slug' => 'required|min:5|max:500',
+                'content' => 'required|min:7',
+                'category_id' => 'required|integer',
+                'description' => 'required|min:7',
+                'posted' => 'required',
+            ]
+        );
 
+        dd($validated->errors());
+        */
         Post::create($request->validated());
         return to_route('post.index');
 
