@@ -34,46 +34,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-       /* $validated = Validator::make($request->all(),
-            [
-                'title' => 'required|min:5|max:500',
-                'slug' => 'required|min:5|max:500',
-                'content' => 'required|min:7',
-                'category_id' => 'required|integer',
-                'description' => 'required|min:7',
-                'posted' => 'required',
-            ]
-        );
+        $validated = Validator::make($request->all(), [
+            'title' => 'required|min:5|max:500',
+            'slug' => 'required|min:5|max:500',
+            'content' => 'required|min:7',
+            'category_id' => 'required|integer',
+            'description' => 'required|min:7',
+            'posted' => 'required',
+        ])->validate();
 
-        dd($validated->errors());
-        */
-        Post::create($request->validated());
+        Post::create($validated);
+
         return to_route('post.index');
-
-        //dd($request->all());
-
-        //$validated = Validator::make($rquest->all(), [
-          //  'title' => 'required|min:5|max:500',
-            //'slug' => 'required|min:5|max:500',
-            //'content' => 'required|min:7',
-            //'category_id' => 'required|integer',
-            //'description' => 'required|min:7',
-            //'posted' => 'required',
-        //]);
-
-        //dd($validated->fails());
-
-
-
-        //Post::create([
-        //'title' => $request->all()['title'],
-        //'slug' => $request->all()['slug'],
-        //'content' => $request->all()['content'],
-        //'category_id' => $request->all()['category_id'],
-        //'description' => $request->all()['description'],
-
-        //'image' => $request->all()['image'],
-        //]);
     }
 
     /**
