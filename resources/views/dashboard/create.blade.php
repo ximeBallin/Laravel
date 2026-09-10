@@ -1,6 +1,7 @@
 @extends('dashboard.master')
 
 @section('content')
+    @include('dashboard.fragment._errors-form')
 
     @if($errors->any())
         @foreach($errors->all() as $e)
