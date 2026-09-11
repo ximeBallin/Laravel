@@ -2,39 +2,37 @@
 
 @section('content')
 
-    <a href="{{ route('category.create') }}">Create</a>
+    <div class="container">
+        <a href="{{ route('category.create') }}" class="btn btn-success mb-3">Crear</a>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Options</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($categories as $c)
+        <table class="table">
+            <thead>
             <tr>
-                <td>
-                    {{ $c->id }}
-                </td>
-                <td>
-                    {{ $c->title }}
-                </td>
-                <td>
-                    <a href="{{ route('category.show', $c) }}">Show</a>
-                    <a href="{{ route('category.edit', $c) }}">Edit</a>
-                    <form action="{{ route('category.destroy', $c) }}" method="post" style="display:inline;">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Acciones</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach ($categories as $category)
+                <tr>
+                    <td>{{ $category->id }}</td>
+                    <td>{{ $category->title }}</td>
+                    <td>
+                        <a href="{{ route('category.show', $category->id) }}" class="btn btn-primary btn-sm">Ver</a>
+                        <a href="{{ route('category.edit', $category->id) }}" class="btn btn-secondary btn-sm">Editar</a>
+                        <form action="{{ route('category.destroy', $category->id) }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
 
-    {{ $categories->links() }}
+        {{ $categories->links() }}
+    </div>
 
 @endsection
