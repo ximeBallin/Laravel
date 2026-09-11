@@ -12,30 +12,19 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $posts = Post::paginate(2);
-
         return view('dashboard.fragment.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $categories = Category::pluck('title', 'id');
         $post = new Post();
-
         return view('dashboard.create', compact('categories', 'post'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = Validator::make($request->all(), [
@@ -48,51 +37,39 @@ class PostController extends Controller
         ])->validate();
 
         Post::create($validated);
-
         return to_route('post.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return view('dashboard.show', ['post' => $post]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Post $post)
     {
         $categories = Category::pluck('title', 'id');
         return view('dashboard.fragment.edit', compact('post', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(PutRequest $request, Post $post)
     {
         $data = $request->validated();
 
-        // Manejo de imagen
         if (isset($data['image'])) {
             $filename = time() . '.' . $data['image']->extension();
             $request->image->move(public_path('uploads/post'), $filename);
             $data['image'] = $filename;
+        } else {
+            unset($data['image']);
         }
 
         $post->update($data);
-
         return to_route('post.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return to_route('post.index');
     }
 }
