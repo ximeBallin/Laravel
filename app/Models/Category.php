@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
+    public $timetamps = false;
 
     protected $fillable = ['title', 'slug'];
 

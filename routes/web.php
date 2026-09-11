@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::resource('post', PostController::class);
+
+Route::resource('category', App\Http\Controllers\Dashboard\CategoryController::class);
