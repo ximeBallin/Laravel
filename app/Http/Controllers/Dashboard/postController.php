@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\PutRequest;
 use App\Http\Requests\Post\StoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
@@ -62,17 +63,19 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        $categories = Category::pluck('id', 'title');
+        return view('dashboard.fragment.edit', compact('post', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PutRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        return to_route('post.index');
     }
 
     /**
