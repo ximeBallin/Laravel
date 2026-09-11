@@ -19,7 +19,6 @@ class PostController extends Controller
     {
         $posts = Post::paginate(2);
 
-
         return view('dashboard.fragment.index', compact('posts'));
     }
 
@@ -31,8 +30,7 @@ class PostController extends Controller
         $categories = Category::pluck('title', 'id');
         $post = new Post();
 
-
-        return view('dashboard.create', compact('categories'.'post'));
+        return view('dashboard.create', compact('categories', 'post'));
     }
 
     /**
@@ -67,7 +65,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = Category::pluck('id', 'title');
+        $categories = Category::pluck('title', 'id');
         return view('dashboard.fragment.edit', compact('post', 'categories'));
     }
 
@@ -76,7 +74,17 @@ class PostController extends Controller
      */
     public function update(PutRequest $request, Post $post)
     {
-        $post->update($request->validated());
+        $data = $request->validated();
+
+        // Manejo de imagen
+        if (isset($data['image'])) {
+            $filename = time() . '.' . $data['image']->extension();
+            $request->image->move(public_path('uploads/post'), $filename);
+            $data['image'] = $filename;
+        }
+
+        $post->update($data);
+
         return to_route('post.index');
     }
 

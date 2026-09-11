@@ -8,7 +8,7 @@
 <label for="content">Content</label>
 <textarea name="content">{{ old('content', $post->content) }}</textarea>
 
-<label for="">Category</label>
+<label for="category_id">Category</label>
 <select name="category_id" id="category_id">
     @foreach($categories as $title => $id)
         <option value="{{$id}}" {{ old('category_id', $post->category_id) == $id ? 'selected' : '' }}>{{$title}}</option>
@@ -24,7 +24,7 @@
     <option {{ old('posted', $post->posted) == 'not' ? 'selected' : '' }} value="not">Not</option>
 </select>
 
+<label for="image">Image</label>
+<input type="file" name="image" id="image">
+
 <button type="submit">Send</button>
-
-
-
