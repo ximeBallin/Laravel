@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Dashboard\BlogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,7 +10,7 @@ Route::get('/', function () {
 
 // Ruta de contacto con nombre agregado para que funcione route('contacto')
 Route::get('/contacto', function () {
-    return view('contacto'); // O puedes retornar un texto si no tienes la vista creada: return 'Vista de contacto';
+    return view('contacto');
 })->name('contacto');
 
 // Grupo de rutas protegidas bajo el prefijo 'dashboard'
@@ -29,6 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Grupo de rutas para el blog corregido
+Route::group(['prefix' => 'blog'], function () {
+    Route::controller(BlogController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{post}', 'show');
+    });
 });
 
 require __DIR__.'/auth.php';
