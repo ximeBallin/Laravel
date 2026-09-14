@@ -10,12 +10,12 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::where("posted", "yes")->paginate(2);
-        return view("web.blog.index", compact("posts"));
+        $posts = Post::paginate(2);
+        return view('dashboard.blog.index', compact('posts'));
     }
 
     public function show(Post $post)
     {
-        return view("web.blog.show", compact("post"));
+        return view('dashboard.blog.show', compact('post'));
     }
 }
