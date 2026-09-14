@@ -22,13 +22,13 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $post->title }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $post->posted }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                                <a href="{{ route('post.show', $post) }}" class="text-indigo-600 hover:text-indigo-900">Show</a>
-                                <a href="{{ route('post.edit', $post) }}" class="text-green-600 hover:text-green-900">Edit</a>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2 flex items-center">
+                                <a href="{{ route('post.show', $post) }}" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-3 rounded text-sm">Ver</a>
+                                <a href="{{ route('post.edit', $post) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-sm">Editar</a>
                                 <form action="{{ route('post.destroy', $post) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('¿Estás seguro?')">Delete</button>
+                                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
                                 </form>
                             </td>
                         </tr>
