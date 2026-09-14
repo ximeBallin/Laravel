@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Ruta de contacto con nombre agregado para que funcione route('contacto')
+// Ruta de contacto
 Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
@@ -22,6 +22,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resources([
         'post' => App\Http\Controllers\Dashboard\PostController::class,
         'category' => App\Http\Controllers\Dashboard\CategoryController::class,
+        'blog' => BlogController::class,
     ]);
 });
 
@@ -30,14 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// Grupo de rutas para el blog corregido
-Route::group(['prefix' => 'blog'], function () {
-    Route::controller(BlogController::class)->group(function () {
-        Route::get('/', 'index');
-        Route::get('/{post}', 'show');
-    });
 });
 
 require __DIR__.'/auth.php';
