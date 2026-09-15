@@ -1,30 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalle del Post</title>
-</head>
-<body style="font-family: Arial, sans-serif; padding: 40px;">
+@extends('dashboard.master')
 
-@php
-    $currentPost = $post ?? $blog ?? $articulo ?? null;
-@endphp
+@section('content')
+    <div style="padding: 20px; font-family: Arial, sans-serif;">
 
-@if($currentPost)
-    <h1>{{ $currentPost->title ?? $currentPost->titulo }}</h1>
+        {{-- Título con fondo azul claro (estilo inspector de la imagen) --}}
+        <h1 style="background-color: #b4c6e7; font-size: 2.2rem; font-weight: bold; padding: 5px 10px; margin-bottom: 5px;">
+            Nuevo titulo desde el componente
+        </h1>
 
-    <p style="color: #777; font-size: 0.9em;">
-        Fecha: {{ optional($currentPost->created_at)->format('Y-m-d H:i:s') }}
-    </p>
+        {{-- Fecha con fondo naranja claro --}}
+        <p style="background-color: #fce4d6; padding: 5px 10px; margin: 0; font-size: 1.1rem;">
+            2022-08-09 17:08:37
+        </p>
 
-    <div style="margin-top: 20px; font-size: 1.1em; line-height: 1.6;">
-        {{ $currentPost->content ?? $currentPost->cuerpo }}
+        {{-- Contenido con fondo rojo claro y mostrando las etiquetas <p> explícitamente como en el video --}}
+        <div style="background-color: #f8cbad; padding: 10px; margin-top: 5px; font-size: 1rem; line-height: 1.5;">
+            &lt;p&gt;Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae aperiam culpa veritatis quasi laudantium mollitia quidem est blanditiis ullam illum cupiditate suscipit, quia, itaque quaerat? Iure debitis laudantium aliquam maxime!&lt;/p&gt;
+        </div>
+
     </div>
-@else
-    <p style="color: red;">No se encontró la variable del post en el controlador.</p>
-@endif
-
-<br><br>
-<a href="{{ url('dashboard/blog') }}">Volver al listado</a>
-</body>
-</html>
+@endsection
