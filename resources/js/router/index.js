@@ -13,6 +13,16 @@ const routes = [
         path: '/create',
         name: 'save',
         component: SaveComponent
+    },
+    {
+        path: '/',
+        name: 'list',
+        component: ListComponent
+    },
+    {
+        path: '/save/:id?', // El :id? indica que el parámetro es opcional
+        name: 'save',
+        component: SaveComponent
     }
 ];
 
