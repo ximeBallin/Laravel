@@ -1,17 +1,13 @@
 <template>
-    <div>
+    <div class="container mx-auto px-4 py-8">
         <h1>Principal</h1>
-        <!-- Renderizamos el componente List importado -->
-        <List />
+        <!-- Aquí se renderizan las vistas de Vue Router (List, Save, etc.) -->
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-import List from './components/List.vue'
-
 export default {
-    components: {
-        List
-    }
+    name: 'App'
 }
 </script>
