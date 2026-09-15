@@ -10,7 +10,7 @@
             Listado principal de post -- slot con nombre
         </p>
 
-        {{-- Primer bloque simulando slot con nombre en múltiples líneas --}}
+        {{-- Primer bloque de prueba --}}
         <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 5px;">
             <div style="font-weight: bold; font-size: 1.1rem;">
                 6QwfKjmluC5Gy1AMkNYf 2
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        {{-- Segundo bloque --}}
+        {{-- Segundo bloque de prueba --}}
         <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 5px;">
             <div style="font-weight: bold; font-size: 1.1rem;">
                 Ir
@@ -37,17 +37,38 @@
             </div>
         </div>
 
-        {{-- Paginación simulada idéntica a la imagen --}}
-        <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
-            <p style="color: #666;">Showing 1 to 2 of 60 results</p>
-            <div>
-                <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px; background: #eee;">&lt;</span>
-                <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px; background: #000; color: #fff;">1</span>
-                <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">2</span>
-                <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">3</span>
-                <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">4</span>
-                <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">&gt;</span>
-            </div>
+        {{-- Paginación real de Laravel (requiere que pases $posts con ->paginate() desde el controlador) --}}
+        <div style="margin-top: 20px;">
+            @if(isset($posts) && method_exists($posts, 'links'))
+                {{ $posts->links() }}
+            @else
+                {{-- Paginación estática idéntica a la imagen si aún no pasas el objeto paginado --}}
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <p style="color: #666;">Showing 1 to 2 of 60 results</p>
+                    <div>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">&lt;</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px; background: #eee;">1</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px; background: #000; color: #fff;">2</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">3</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">4</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">5</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">6</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">7</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">8</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">9</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">10</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">...</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">29</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">30</span>
+                        <span style="padding: 5px 10px; border: 1px solid #ccc; margin: 2px;">&gt;</span>
+                    </div>
+                </div>
+            @endif
+        </div>
+
+        {{-- Texto final de la imagen --}}
+        <div style="margin-top: 30px; font-size: 1rem; color: #333;">
+            Pie de página
         </div>
     </div>
 @endsection
