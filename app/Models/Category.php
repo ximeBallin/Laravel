@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
-    public $timetamps = false;
+
+    public $timestamps = false; // Corregido: 'timestamps' en lugar de 'timetamps'
 
     protected $fillable = ['title', 'slug'];
 
