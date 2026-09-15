@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function all()
+    {
+        return Category::with('posts')->get();
+    }
+
     public function index()
     {
         return Category::all();
