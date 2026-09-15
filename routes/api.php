@@ -9,3 +9,7 @@ Route::apiResource('categories', CategoryController::class);
 Route::get('category/{category}/posts', [CategoryController::class, 'posts']);
 Route::get('categories/{category:slug}', [CategoryController::class, 'show']);
 Route::get('category/{category:slug}/posts', [CategoryController::class, 'posts']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('categories', CategoryController::class);
+    // Otras rutas protegidas...
+});
