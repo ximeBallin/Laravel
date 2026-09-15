@@ -4,6 +4,7 @@ import App from './vue/App.vue';
 import Oruga from '@oruga-ui/oruga-next';
 import '@oruga-ui/oruga-next/dist/oruga.css';
 import '@mdi/font/css/materialdesignicons.min.css';
+import '@oruga-ui/oruga-next/dist/oruga-full.css';
 
 const app = createApp(App);
 
