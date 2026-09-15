@@ -45,7 +45,7 @@ export default {
     },
     methods: {
         getCategories() {
-            axios.get('/api/category') // Ajusta la ruta de tu API según tu backend
+            axios.get('/api/category')
                 .then(response => {
                     this.categories = response.data;
                 })
@@ -54,7 +54,13 @@ export default {
                 });
         },
         submitForm() {
-            console.log(this.form);
+            axios.post('/api/posts', this.form)
+                .then(response => {
+                    this.$router.push({ name: 'list' });
+                })
+                .catch(error => {
+                    console.error("Error al crear el post:", error);
+                });
         }
     }
 }
