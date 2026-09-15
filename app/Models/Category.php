@@ -4,17 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Category extends Model
+class Category model extends Model // o class Category extends Model
 {
     use HasFactory;
 
-    public $timestamps = false; // Corregido: 'timestamps' en lugar de 'timetamps'
-
     protected $fillable = ['title', 'slug'];
 
-    public function posts(): HasMany
+    // Indicamos que el binding en las rutas se haga mediante el 'slug'
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function posts()
     {
         return $this->hasMany(Post::class);
     }
