@@ -13,3 +13,6 @@ app.mount('#app');
 app.use(Oruga, {
     iconPack: 'mdi',
 });
+app.use(router);
+app.use(Oruga);
+app.mount('#app');
