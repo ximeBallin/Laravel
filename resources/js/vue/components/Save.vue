@@ -1,9 +1,20 @@
 <template>
     <div>
-        <h2>Crear Post</h2>
+        <h2>Guardar Post</h2>
         <form @submit.prevent="submitForm">
             <o-field label="Título">
                 <o-input v-model="form.title" placeholder="Título del post"></o-input>
+            </o-field>
+
+            <o-field label="Categoría">
+                <o-select v-model="form.category_id" placeholder="Selecciona una categoría" expanded>
+                    <option
+                        v-for="category in categories"
+                        :key="category.id"
+                        :value="category.id">
+                        {{ category.title }}
+                    </option>
+                </o-select>
             </o-field>
 
             <o-field label="Contenido">
@@ -16,18 +27,33 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
             form: {
                 title: '',
+                category_id: '',
                 content: ''
-            }
+            },
+            categories: []
         }
     },
+    mounted() {
+        this.getCategories();
+    },
     methods: {
+        getCategories() {
+            axios.get('/api/category') // Ajusta la ruta de tu API según tu backend
+                .then(response => {
+                    this.categories = response.data;
+                })
+                .catch(error => {
+                    console.error("Error al cargar categorías:", error);
+                });
+        },
         submitForm() {
-            // Lógica inicial de guardado
             console.log(this.form);
         }
     }
