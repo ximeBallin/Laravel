@@ -7,3 +7,9 @@ use App\Http\Controllers\Api\CategoryController;
 Route::get('category/all', [CategoryController::class, 'all']);
 Route::apiResource('categories', CategoryController::class);
 Route::get('category/{category}/posts', [CategoryController::class, 'posts']);
+Route::get('categories/{category:slug}', [CategoryController::class, 'show']);
+Route::get('category/{category:slug}/posts', [CategoryController::class, 'posts']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('categories', CategoryController::class);
+    // Otras rutas protegidas...
+});
